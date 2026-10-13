@@ -1,0 +1,15 @@
+# Python & PyInstaller Build Artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+build/
+dist/
+*.spec
+
+# IDE & User Database Storage
+.idea/
+.vscode/
+*.db
+*.sqlite3
+*.log
+*.tmp
