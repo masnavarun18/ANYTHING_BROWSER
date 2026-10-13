@@ -1,6 +1,6 @@
-# 🌐 ANYTHING BROWSER (Windows & Android)
+# 🌐 ANYTHING BROWSER
 
-A high-performance, modern cross-platform web browser supporting both **Windows Desktop PCs** (Python 3.12 + PyQt6 Chromium) and **Android Mobile Devices** (Kotlin + Jetpack Compose + Android WebView).
+A high-performance, modern Windows desktop web browser built with **Python 3.12**, **PyQt6**, and the **Chromium Embedded Framework (QtWebEngine)**.
 
 ![ANYTHING BROWSER Logo](assets/logo.png)
 
@@ -8,58 +8,55 @@ A high-performance, modern cross-platform web browser supporting both **Windows 
 
 ## 🌟 Key Features
 
-- **⚡ Fast Chromium Engine**: Powered by QtWebEngine (Windows) and Android WebView with full JavaScript, HTML5 video, CSS3, WebGL, and PDF support.
+- **⚡ Fast Chromium Engine**: Powered by QtWebEngine with full JavaScript, HTML5 video, CSS3, WebGL, and PDF support.
 - **👤 User Profiles & Accounts**: Sign in or create a user account with persistent SQLite profile data and password hashing (`SHA-256`).
 - **⚙️ Chrome-Style Settings Manager**: Customize custom homepages, default search engines (Google, Bing, DuckDuckGo, Yahoo, Ecosia), and default download directories.
-- **🛡️ Built-in Ad-Blocker & Extension Manager (`🧩`)**: Auto-loads Chromium extensions (e.g. uBlock Origin) and blocks tracking servers.
-- **🖼️ Picture Saving Engine**: Right-click or long-press any picture on any website to **Save Image As...**, copy link, or view in new tab.
-- **📥 Download History Manager (`📥`)**: Track downloads with one-click **Open File** and **Open Folder** actions in Windows File Explorer and Android Download Manager.
+- **🛡️ Built-in Ad-Blocker & Extension Manager**: Auto-loads Chromium extensions (e.g. uBlock Origin) and blocks tracking servers.
+- **🧩 Extension Support (`🧩`)**: Load unpacked Chrome extensions directly into Chromium using the interactive Extension Manager dialog.
+- **🖼️ Picture Saving Engine**: Right-click any picture to **Save Image As...**, copy link, or open in new tab.
+- **📥 Download Manager (`📥`)**: Download progress dialogs and persistent download history with one-click **Open File** and **Open Folder** actions.
 - **🎤 Voice Search & Microphone Access**: Integrated microphone permissions for Google and YouTube voice search (`🎤`).
 - **🌙 Dark & Light Mode Theme Engine**: Toggle native dark and light themes dynamically.
 - **🔍 Real-Time Page Zoom (`A+` / `A-`)**: Smooth zoom scaling from 50% to 300%.
 
 ---
 
-## 💻 Running Windows Desktop App
+## 🚀 How to Run from Source
 
 ### Prerequisites
 - Python 3.12 (or 3.10+)
 - Windows 10 or Windows 11
 
-### Step 1: Run from Source
-```bash
-pip install PyQt6 pyinstaller
-python src/main.py
-```
+### Installation Steps
 
-### Step 2: Build Windows `.exe` Executable
-To compile a standalone `.exe` bundle that runs on any Windows PC without needing Python installed:
-```bash
-python build.py
-```
-Output executable: `dist/AnythingBrowser/AnythingBrowser.exe`
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/masnavarun18/ANYTHING_BROWSER.git
+   cd ANYTHING_BROWSER
+   ```
+
+2. **Install Dependencies**:
+   ```bash
+   pip install PyQt6 pyinstaller
+   ```
+
+3. **Run Application**:
+   ```bash
+   python src/main.py
+   ```
 
 ---
 
-## 📱 Building & Running Android Mobile App
+## 📦 Building Standalone Windows Executable
 
-### Prerequisites
-- Android Studio (Hedgehog or newer)
-- Android SDK 34 (Android 14) / Min SDK 26 (Android 8.0)
-- Kotlin 1.9+ & Jetpack Compose
+To compile a standalone `.exe` bundle that runs on any Windows PC without needing Python installed:
 
-### Step 1: Open in Android Studio
-1. Open Android Studio.
-2. Select **Open an Existing Project** and choose the `android/` directory inside this repository.
+```bash
+python build.py
+```
 
-### Step 2: Build & Run APK
-1. Connect your Android phone via USB or start an Android Virtual Device (AVD).
-2. Click **Run 'app'** (`Shift + F10`) or run from terminal:
-   ```bash
-   cd android
-   ./gradlew assembleDebug
-   ```
-Output APK: `android/app/build/outputs/apk/debug/app-debug.apk`
+The compiled standalone executable bundle will be located at:
+`dist/AnythingBrowser/AnythingBrowser.exe`
 
 ---
 
@@ -67,25 +64,22 @@ Output APK: `android/app/build/outputs/apk/debug/app-debug.apk`
 
 ```
 ANYTHING/
-├── src/                    # 💻 Windows Desktop Application (Python + PyQt6)
-│   ├── main.py              # Windows app entry point
-│   ├── browser_window.py    # Multi-tab UI, navigation toolbar, profile & settings
-│   ├── chromium_engine.py   # Chromium CEF profile, User-Agent, & extension loader
+├── src/
+│   ├── main.py              # Application entry point
+│   ├── browser_window.py    # Multi-tab UI, navigation toolbar, profile & settings dialogs
+│   ├── chromium_engine.py   # Chromium CEF profile, User-Agent, extension loader, & security
 │   ├── bookmarks_history.py # SQLite database for history, bookmarks, users, & settings
 │   ├── download_manager.py  # Download progress & manager
 │   └── content_filter.py    # Resource parser & filter engine
-├── android/                # 📱 Android Mobile Application (Kotlin + Jetpack Compose)
-│   ├── app/
-│   │   ├── src/main/java/com/anything/browser/
-│   │   │   ├── MainActivity.kt        # Compose UI & Tab Manager
-│   │   │   ├── BrowserWebView.kt      # Android WebView, WebChromeClient, & Fullscreen
-│   │   │   └── ProfileDatabase.kt     # Room SQLite Database
-│   │   └── AndroidManifest.xml
-│   ├── build.gradle.kts
-│   └── settings.gradle.kts
-├── assets/                 # 🎨 Shared Logos & Icons (logo.png, logo.ico)
-├── build.py                # 📦 Windows PyInstaller Compiler
-└── README.md               # 📖 Project Documentation
+├── assets/
+│   ├── logo.png             # Application logo (512x512)
+│   └── logo.ico             # Windows ICO icon
+├── installer/
+│   ├── setup_builder.py     # Windows setup installer generator
+│   └── install.ps1          # PowerShell setup script
+├── tests/                   # Unit test suite
+├── build.py                 # PyInstaller automated compiler
+└── README.md
 ```
 
 ---
